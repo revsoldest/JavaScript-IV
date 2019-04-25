@@ -30,3 +30,48 @@ demo(subject) {
              }
          };
       
+
+class Student extends Instructor {
+    constructor(attributes){
+        super(attributes);
+            this.previousBackground = attributes.previousBackground;
+            this.className = attributes.className;
+            this.favSubjects = attributes.favSubjects
+ }
+ PRAssignment(subject) {
+    console.log (`${student.name} has submitted a PR for ${subject}`)
+    }
+    sprintChallenge(subject) {
+        console.log(`${student.name} has started the sprint challenge for ${subject}`)
+        }
+        listsSubjects() {
+            return this.favSubjects
+         }
+}
+
+
+const Keiran = new Instructor ({
+    name:"Keiran",
+    location: "America",
+    age: 24,
+    favLanguage: "Python",
+    catchPhrase: "Well, Blokes were done for the day and Bob's your uncle",
+
+
+})
+
+const Elijah = new Student ({
+    name:"Elijah",
+    location:"West Virginia",
+    age:28,
+    grade:90,
+    favSubjects :['Javascript', "SASS", "HTML"]
+
+})
+
+const Bob = new Student({
+    name:"Bob",
+    location:"New York",
+    grade:15,
+    favSubjects:["CSS", "Geometry", "Python"]
+})
