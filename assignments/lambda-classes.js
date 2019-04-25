@@ -1,6 +1,4 @@
 // CODE here for your Lambda Classes
-
-
 class Person {
     constructor(attributes) {
         this.name = attributes.name;
@@ -9,7 +7,7 @@ class Person {
         this.gender = attributes.gender;
   }
 speak() {
-       console.log(`Hello my is ${this.name}, I am from ${location}`);
+       console.log(`Hello my is ${this.name}, I am from ${this.location}`);
         }
     };
 
@@ -23,10 +21,10 @@ class Instructor extends Person {
             this.catchPhrase = attributes.catchPhrase;
   }
 demo(subject) {
-       console.log(`Today we are learning about ${subject}`);
+       console.log(`Today we are learning about ${this.subject}`);
         }
          grade(student, subject) {
-            console.log(`${student.name} receives a perfect score on ${subject}`);
+            console.log(`${student.name} receives a perfect score on ${this.subject}`);
              }
          };
       
@@ -39,16 +37,33 @@ class Student extends Instructor {
             this.favSubjects = attributes.favSubjects
  }
  PRAssignment(subject) {
-    console.log (`${student.name} has submitted a PR for ${subject}`)
+    console.log (`${this.name} has submitted a PR for ${this.subject}`)
     }
     sprintChallenge(subject) {
-        console.log(`${student.name} has started the sprint challenge for ${subject}`)
+        console.log(`${this.name} has started the sprint challenge for ${this.subject}`)
         }
         listsSubjects() {
-            return this.favSubjects
+            return this.favSubjects;
          }
 }
 
+
+
+class PM extends Student {
+    constructor(attributes){
+        super(attributes);
+        this.gradClassName = attributes.gradClassName;
+        this.favInstuctor = attributes.favInstuctor;
+
+    }
+   standUp(channel){
+       console.log(`${this.name} announces to ${channel} @channel study times!`)
+   }
+   debugsCode(student, subject){
+       console.log(`${this.name} is debugging ${student}'s work on ${subject}`)
+
+   }
+}
 
 const Keiran = new Instructor ({
     name:"Keiran",
@@ -69,9 +84,23 @@ const Elijah = new Student ({
 
 })
 
-const Bob = new Student({
-    name:"Bob",
-    location:"New York",
-    grade:15,
-    favSubjects:["CSS", "Geometry", "Python"]
+
+
+const Hacker = new PM( {
+    name: "Hacker",
+    gradClassName:"University of The world",
+    location: "ohio",
+    favInstuctor: "Keiran Kozlowski",
+
 })
+
+
+Keiran.demo('python')
+console.log(Keiran.catchPhrase)
+Elijah.PRAssignment("Java");
+Elijah.sprintChallenge('Python')
+console.log(Elijah.location)
+console.log(Elijah.listsSubjects())
+console.log(Hacker.standUp("Elijah"))
+console.log(Hacker.debugsCode("Elijah"))
+console.log(Hacker.speak("Elijah"))
