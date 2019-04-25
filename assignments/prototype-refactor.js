@@ -8,46 +8,43 @@ Prototype Refactor
 
 */
 
-function GameObject(attributes){
+class GameObject {
+    constructor(attributes) {
     this.createdAt = attributes.createdAt;
     this.dimensions = attributes.dimensions;
   }
-  
-  GameObject.prototype.destroy = function() {
+destroy() {
     return `${this.name} was removed from the game.`;
-  }
-  
-
-  
-  function CharacterStats(stats) {
-    GameObject.call(this, stats);
-    this.healthPoints = stats.healthPoints;
-    this.name = stats.name;
-    this.hp = stats.hp;
-  }
-  
-  CharacterStats.prototype = Object.create(GameObject.prototype); 
-  
-  CharacterStats.prototype.takeDamage = function() {
-    return `${this.name} took some damage`;
-  }
-  
+        }
+    };
  
   
-  function Humanoid(human) {
-    CharacterStats.call(this, human);
-    this.team = human.team;
-    this.weapons = human.weapons;
-    this.language = human.language;
+  class CharacterStats extends GameObject {
+    constructor(attributes){
+    super(attributes);
+    this.healthPoints = attributes.healthPoints;
+    this.name = attributes.name;
+    this.hp = attributes.hp;
   }
   
-  Humanoid.prototype = Object.create(CharacterStats.prototype);
+ takeDamage() {
+    return `${this.name} took some damage`;
+        }
+    };
+ 
   
-  Humanoid.prototype.greet = function () {
+  class Humanoid extends CharacterStats {
+    constructor(attributes){
+    super(attributes);
+    this.team = attributes.team;
+    this.weapons = attributes.weapons;
+    this.language = attributes.language;
+  }
+  
+  greet() {
     return `${this.name} offers a greeting in ${this.language}.`;
-  };
-  
-
+    };
+}
   // Test you work by un-commenting these 3 objects and the list of console logs below:
   
   
